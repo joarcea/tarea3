@@ -17,9 +17,9 @@ Este proyecto implementa un diseño de cajas responsivas que se adapta a diferen
 
 ## Diseño Responsivo
 
-- **Desktop (> 1400px)**: 3 columnas
-- **Tablet (768px - 1400px)**: 2 columnas
-- **Mobile (< 768px)**: 1 columna
+- **Desktop (> 767px)**: Layout adaptable con CSS Grid (típicamente 3 columnas en pantallas grandes)
+- **Tablet (481px - 767px)**: Layout adaptable con CSS Grid (típicamente 2 columnas)
+- **Mobile (< 480px)**: 1 columna apilada verticalmente
 
 ## Cómo Visualizar
 
