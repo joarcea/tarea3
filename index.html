@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Web Responsivo y Bootstrap 5 - Tarea 3 Eduardo Arce</title>
+    
+    <!-- Bootstrap 5.3.8 CDN (versión actual en 2026) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;              /* Fondo general de la página: blanco */
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Caja negra grande que envuelve TODA la página (fondo del "navegador") */
+.page-wrapper {
+    background-color: #000000;              /* Caja negra grande */
+    border: 2px solid #000000;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 1450px;
+    width: calc(100% - 40px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    padding: 20px;
+    flex: 1;
+}
+
+/* Contenido interno con fondo blanco para separar del negro exterior */
+.inner-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: calc(100% - 40px);
+}
+
+/* Header - Verde original + borde negro */
+.header {
+    background-color: #c8f7c5;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    gap: 30px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.header > div {
+    flex: 1;
+    min-width: 320px;
+    padding: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    border: 2px solid #000000;
+    border-radius: 6px;
+}
+
+.header-img {
+    background-color: #98fb98;
+    min-height: 200px;
+}
+
+.header-text {
+    background-color: #90ee90;
+    min-height: 200px;
+}
+
+/* Navegación Principal - Verde oscuro + borde negro */
+.nav-principal {
+    background-color: #228b22;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Layout Aside + Main */
+.main-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+aside {
+    flex: 1 1 320px;
+    background-color: #add8e6;
+    padding: 30px;
+    min-height: 380px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+}
+
+main {
+    flex: 3 1 680px;
+}
+
+article {
+    background-color: #87cefa;
+    margin-bottom: 25px;
+    padding: 25px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    min-height: 160px;
+}
+
+/* Grid de imágenes - Naranja original + borde negro en cada una */
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.images-grid > div {
+    background-color: #ffdab9;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.images-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Footer - Gris original + borde negro */
+.footer {
+    background-color: #808080;
+    color: white;
+    padding: 25px 20px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content > div {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2em;
+    border: 2px solid #000000;
+    border-radius: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .images-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+    .images-grid {
+        grid-template-columns: 1fr;
+    }
+    aside {
+        order: -1;
+    }
+    .page-wrapper {
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Bootstrap (responsive) -->
+    <nav class="navbar navbar-expand-lg nav-bg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tarea 3 - Diseño Responsivo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#responsive">Diseño Responsivo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#viewport">Viewport</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#media">Media Queries</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bootstrap">Bootstrap 5</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header con flex Bootstrap -->
+    <header class="header-bg py-5">
+        <div class="container">
+            <div class="row align-items-center text-center text-md-start">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="p-4 rounded header-img text-white fw-bold fs-4">
+                        Imagen o Información referencial
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 rounded header-text text-white fw-bold fs-4">
+                        Texto o contenido relacionado
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="row">
+            <!-- Aside -->
+            <aside class="col-lg-4 mb-4">
+                <div class="aside-bg p-4 rounded">
+                    <h3>Aside - Contenido adicional</h3>
+                    <p>Información lateral sobre diseño responsivo. Ejemplo: Más del 65% del tráfico web en 2026 es móvil.</p>
+                </div>
+            </aside>
+
+            <!-- Main -->
+            <main class="col-lg-8">
+                <!-- Carousel de ejemplo (componente Bootstrap) -->
+                <div id="carouselExample" class="carousel slide mb-5" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="scr/img1.png" class="d-block w-100" alt="Ejemplo Diseño Responsivo">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="scr/img2.png" class="d-block w-100" alt="Ejemplo Media Queries">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="scr/img3.png" class="d-block w-100" alt="Ejemplo Viewport">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="scr/img4.png" class="d-block w-100" alt="Ejemplo Bootstrap Grid">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <article id="responsive" class="article-bg p-4 mb-4 rounded">
+                    <h2>1. Diseño Web Responsivo</h2>
+                    <p>Es una técnica de diseño web que permite que las páginas se adapten automáticamente a diferentes tamaños de pantalla y dispositivos (móviles, tablets, desktops).</p>
+                    <p><strong>Importancia actual (2026):</strong> Con el aumento del tráfico móvil (>65%), mejora la experiencia del usuario (UX), reduce la tasa de rebote, favorece el SEO (Google prioriza mobile-first) y ahorra costos al evitar sitios separados.</p>
+                    <p><strong>Principios básicos:</strong> Layouts fluidos, imágenes flexibles, media queries y enfoque mobile-first.</p>
+                </article>
+
+                <article id="viewport" class="article-bg p-4 mb-4 rounded">
+                    <h2>2. El Viewport</h2>
+                    <p>El viewport es el área visible de la página en el navegador del dispositivo. En móviles, sin configuración adecuada, el navegador muestra el sitio como si fuera de 980px de ancho y hace zoom out.</p>
+                    <p><strong>Configuración esencial:</strong></p>
+                    <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                    <p>Esto fuerza al navegador a usar el ancho real del dispositivo y un zoom inicial de 1:1, esencial para diseños responsivos.</p>
+                </article>
+
+                <article id="media" class="article-bg p-4 mb-4 rounded">
+                    <h2>3. CSS3 Media Queries</h2>
+                    <p>Son reglas CSS que aplican estilos condicionales según características del dispositivo (ancho, altura, orientación, resolución).</p>
+                    <p><strong>Ejemplos prácticos:</strong></p>
+                    <ul>
+                        <li>@media (max-width: 768px) { ... } → Para móviles</li>
+                        <li>@media (min-width: 992px) { ... } → Para desktops</li>
+                    </ul>
+                    <pre><code>@media (max-width: 992px) {
+  .main-layout { flex-direction: column; }
+}
+@media (max-width: 768px) {
+  .images { grid-template-columns: 1fr; }
+}</code></pre>
+                    <p>En esta página usamos media queries para apilar columnas y cambiar el grid de imágenes en móvil.</p>
+                </article>
+
+                <article id="bootstrap" class="article-bg p-4 rounded">
+                    <h2>4. Bootstrap 5</h2>
+                    <p>Bootstrap 5 es un framework CSS/JS open-source mobile-first que acelera el desarrollo de interfaces responsivas con componentes pre-diseñados.</p>
+                    <p><strong>Componentes usados aquí:</strong></p>
+                    <ul>
+                        <li><strong>Containers</strong>: .container para centrar contenido.</li>
+                        <li><strong>Grid System</strong>: row + col-* para layouts flexibles (12 columnas, breakpoints sm/md/lg).</li>
+                        <li><strong>Flex</strong>: d-flex, align-items-center para alinear elementos.</li>
+                        <li><strong>Carousel</strong>: Slider interactivo para mostrar contenido dinámico.</li>
+                        <li><strong>Navbar</strong>: Barra de navegación colapsable en móvil.</li>
+                    </ul>
+                    <p>En esta versión actualizada, Bootstrap hace el sitio más profesional y responsivo automáticamente.</p>
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-white text-center py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">Contenido Footer 1 - Eduardo Arce - ISW-512</div>
+                <div class="col-md-6">Contenido Footer 2 - Profesor: Mit. Sergio González Salazar - 2026</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
